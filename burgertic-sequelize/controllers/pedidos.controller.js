@@ -33,31 +33,40 @@ const getPedidoById = async (req, res) => {
     }
 };
 
+// Controlador para crear un pedido
 const createPedido = async (req, res) => {
     const platos = req.body.platos;
-
-    if (!platos)
-        return res
-            .status(400)
-            .json({ message: "Se necesita al menos un plato" });
+    console.log(req.idUsuario);
+    // Validación de los platos: asegurarse de que existan platos en el cuerpo de la solicitud
+    if (!platos || platos.length === 0) {
+        return res.status(400).json({ message: "Se necesita al menos un plato" });
+    }
 
     let error = false;
 
+    // Validar cada plato individualmente
     platos.forEach((plato) => {
         if (!plato.id || !plato.cantidad) {
-            res.status(400).json({
+            return res.status(400).json({
                 message: "Los platos deben tener un ID y una cantidad",
             });
-            error = true;
         }
     });
 
-    if (error) return;
-
     try {
+        // Asegurarse de que el ID del usuario esté disponible en req.idUsuario (lo debe haber agregado un middleware de verificación de token)
+        const idUsuario = req.idUsuario;
+
+        // Si no existe el idUsuario, devolver un error
+        if (!idUsuario) {
+            return res.status(401).json({ message: "Usuario no autorizado" });
+        }
+
+        // Llamar al servicio para crear el pedido y asociarlo con el id_usuario
         await PedidosService.createPedido(req.idUsuario, platos);
         res.json({ message: "Pedido creado con éxito" });
     } catch (error) {
+        // Manejo de errores
         res.status(500).json({ message: error.message });
     }
 };

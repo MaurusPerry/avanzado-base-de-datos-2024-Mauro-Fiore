@@ -1,0 +1,83 @@
+### Register 
+POST http://localhost:9000/auth/register HTTP/1.1 
+Content-Type: application/json
+
+{
+"nombre": "asd", 
+"apellido": "garcia", 
+"email": "pe@pe.com", 
+"password": "hello"
+}
+
+### Login 
+POST http://localhost:9000/auth/login HTTP/1.1 
+Content-Type: application/json
+
+{
+    "email": "sendra@sendra.sendra", 
+    "password": "oyepe"
+}
+
+### Get pedidos 
+GET http://localhost:9000/pedidos HTTP/1.1 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWF0IjoxNzMxOTAyNjU0LCJleHAiOjE3MzE5MDQ0NTR9.bdc3E1eolUALS79oApirVXRNPU5S6ZUt_M7zCAItT-4
+
+### Get pedidos by user 
+GET http://localhost:9000/pedidos/usuario HTTP/1.1 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWF0IjoxNzMxOTA0NTU1LCJleHAiOjE3MzE5MDYzNTV9.RfTTsP7M3po6-K7aNCrDXZwwhguOy7ey1O77IA29mmA
+
+### Get pedido by id 
+GET http://localhost:9000/pedidos/3 HTTP/1.1 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWF0IjoxNzMxOTAyNjU0LCJleHAiOjE3MzE5MDQ0NTR9.bdc3E1eolUALS79oApirVXRNPU5S6ZUt_M7zCAItT-4
+
+### Create pedido 
+POST http://localhost:9000/pedidos HTTP/1.1 
+Content-Type: application/json 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWF0IjoxNzMxOTAyNjU0LCJleHAiOjE3MzE5MDQ0NTR9.bdc3E1eolUALS79oApirVXRNPU5S6ZUt_M7zCAItT-4
+
+{
+    "platos": [ { "id": 1, "cantidad": 2 }, { "id": 2, "cantidad": 1 } ]
+}
+
+### Aceptar pedido 
+PUT http://localhost:9000/pedidos/1/aceptar HTTP/1.1 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWF0IjoxNzMxOTAzODU3LCJleHAiOjE3MzE5MDU2NTd9.RgCoQh8hOmVau7eVXaFqOTU3m4Wo-s4rFTKwyD2RiLI
+
+### Empezar pedido 
+PUT http://localhost:9000/pedidos/2/comenzar HTTP/1.1 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWF0IjoxNzMxOTAzODU3LCJleHAiOjE3MzE5MDU2NTd9.RgCoQh8hOmVau7eVXaFqOTU3m4Wo-s4rFTKwyD2RiLI
+
+### Entregar pedido 
+PUT http://localhost:9000/pedidos/2/entregar HTTP/1.1 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWF0IjoxNzI2ODgyNTM1LCJleHAiOjE3MjY4OTY5MzV9.c-zCYV7vGczpd314GS9OFaxMpunwRgwNmnjDlQqoJCE
+
+### Borrar pedido 
+DELETE http://localhost:9000/pedidos/1 HTTP/1.1 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWF0IjoxNzI2ODgyNTM1LCJleHAiOjE3MjY4OTY5MzV9.c-zCYV7vGczpd314GS9OFaxMpunwRgwNmnjDlQqoJCE
+
+### Get platos 
+GET http://localhost:9000/platos HTTP/1.1
+
+### Get plato by id 
+GET http://localhost:9000/platos/1 HTTP/1.1
+
+### Get plato by tipo 
+GET http://localhost:9000/platos/tipo/principal HTTP/1.1
+
+### Create plato 
+POST http://localhost:9000/platos HTTP/1.1 Content-Type: application/json Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWF0IjoxNzI2ODgyNTM1LCJleHAiOjE3MjY4OTY5MzV9.c-zCYV7vGczpd314GS9OFaxMpunwRgwNmnjDlQqoJCE
+
+{
+"nombre": "Hamburguesa", "descripcion": "Hamburguesa de carne", "precio": 100, "tipo": "principal"
+}
+
+### Update plato 
+PUT http://localhost:9000/platos/1 HTTP/1.1 Content-Type: application/json Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWF0IjoxNzI2ODgyNTM1LCJleHAiOjE3MjY4OTY5MzV9.c-zCYV7vGczpd314GS9OFaxMpunwRgwNmnjDlQqoJCE
+
+{
+"nombre": "Hamburguesa", "descripcion": "Hamburguesa de carne", "precio": 100, "tipo": "principal"
+}
+
+### Delete plato 
+DELETE http://localhost:9000/platos/1 HTTP/1.1 
+Content-Type: application/json Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWF0IjoxNzI2ODgyNTM1LCJleHAiOjE3MjY4OTY5MzV9.c-zCYV7vGczpd314GS9OFaxMpunwRgwNmnjDlQqoJCE
